@@ -20,6 +20,18 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+
 type Props = {
   name: string;
   age: number;
@@ -31,28 +43,53 @@ type Props = {
 export default function Edit({ user }: { user: Props }) {
   return (
     <Dialog>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="h-8 w-8 p-0">
-            <span className="sr-only">Open menu</span>
-            <MoreHorizontal className="h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DialogTrigger asChild>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
-          </DialogTrigger>
-          <DropdownMenuItem>Delete</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>View detail</DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => navigator.clipboard.writeText(user.name)}
-          >
-            Copy user's name
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <AlertDialog>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0">
+              <span className="sr-only">Open menu</span>
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            
+            {/* Edit Dialog Trigger */}
+
+            <DialogTrigger asChild>
+              <DropdownMenuItem>Edit</DropdownMenuItem>
+            </DialogTrigger>
+
+            {/* Edit Dialog Trigger */}
+
+            <AlertDialogTrigger asChild>
+              <DropdownMenuItem>Delete</DropdownMenuItem>
+            </AlertDialogTrigger>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>View detail</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => navigator.clipboard.writeText(user.name)}
+            >
+              Copy user's name
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete
+              <span className="font-bold"> {user.name}'s </span>
+              account and remove their data from our servers.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction>Continue</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
 
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

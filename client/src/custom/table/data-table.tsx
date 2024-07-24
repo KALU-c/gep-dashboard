@@ -1,5 +1,3 @@
-"use client";
-
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -69,12 +67,13 @@ export function DataTable<TData, TValue>({
   return (
     <div>
       <div className="flex justify-between items-center">
-        
         <div className="flex gap-6">
           <div className="flex items-center py-4">
             <Input
               placeholder="Filter name"
-              value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+              value={
+                (table.getColumn("name")?.getFilterValue() as string) ?? ""
+              }
               onChange={(event) =>
                 table.getColumn("name")?.setFilterValue(event.target.value)
               }
@@ -84,7 +83,9 @@ export function DataTable<TData, TValue>({
           <div className="flex items-center py-4">
             <Input
               placeholder="Filter email"
-              value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+              value={
+                (table.getColumn("email")?.getFilterValue() as string) ?? ""
+              }
               onChange={(event) =>
                 table.getColumn("email")?.setFilterValue(event.target.value)
               }
@@ -92,45 +93,46 @@ export function DataTable<TData, TValue>({
             />
           </div>
         </div>
-        {/* <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
-          
-        </div> */}
+
         <div className="flex gap-6 items-center ">
-          <div className="">
-          {
-            table.getFilteredSelectedRowModel().rows.length > 0 ? <Trash2 className="h-1/6 text-red-400 cursor-pointer" /> : ""
-          }
+          <div className="flex-1 text-sm text-muted-foreground">
+            {table.getFilteredSelectedRowModel().rows.length} of{" "}
+            {table.getFilteredRowModel().rows.length} row(s) selected.
           </div>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter(
-                (column) => column.getCanHide()
-              )
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                )
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
+          <div>
+            {table.getFilteredSelectedRowModel().rows.length > 0 ? (
+              <Trash2 className="h-1/6 text-red-400 cursor-pointer" />
+            ) : (
+              ""
+            )}
+          </div>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="ml-auto">
+                Columns
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {table
+                .getAllColumns()
+                .filter((column) => column.getCanHide())
+                .map((column) => {
+                  return (
+                    <DropdownMenuCheckboxItem
+                      key={column.id}
+                      className="capitalize"
+                      checked={column.getIsVisible()}
+                      onCheckedChange={(value) =>
+                        column.toggleVisibility(!!value)
+                      }
+                    >
+                      {column.id}
+                    </DropdownMenuCheckboxItem>
+                  );
+                })}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
       <div className="rounded-md border">

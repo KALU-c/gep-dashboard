@@ -91,9 +91,8 @@ const Navbar = ({ hideTabs = false }: Props) => {
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              <Link to="/login"><DropdownMenuItem>Logout</DropdownMenuItem></Link>
             </DropdownMenuContent>
           </DropdownMenu>
         ) : (
