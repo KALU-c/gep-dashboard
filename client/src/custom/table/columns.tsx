@@ -10,7 +10,7 @@ export type User = {
   age: number;
   phone: number;
   email: string;
-  registrationDate: Date | string;
+  date: Date | string;
 };
 
 export const columns: ColumnDef<User>[] = [
@@ -107,7 +107,7 @@ export const columns: ColumnDef<User>[] = [
     },
   },
   {
-    accessorKey: "registrationDate",
+    accessorKey: "date",
     header: ({ column }) => {
       return (
         <Button

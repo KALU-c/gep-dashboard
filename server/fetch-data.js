@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import { Users } from "./schema.js";
 
 dotenv.config();
-const uri = "mongodb://localhost:27017/GEP";
+const uri = "mongodb://localhost:27017/GEPUSERS";
 
 await mongoose.connect(uri);
 

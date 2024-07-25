@@ -1,14 +1,17 @@
-import express from "express"
-import dotenv from "dotenv"
-import cors from "cors"
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import morgan from "morgan";
+import bodyParser from "body-parser";
 import { fetchUserData } from "./fetch-data.js";
 
 dotenv.config();
-
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 app.use(cors());
+app.use(morgan("tiny"));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 async function usersData() {
   try {
@@ -16,14 +19,16 @@ async function usersData() {
     if(users.length === 0) {
       console.log("Users array is empty");
     } else {
-      console.log(users);
+      return users;
     }
   } catch(err) {
     console.log(err);
   }
 }
 
-usersData();
+app.get("/users", async (req, res) => {
+  const usersList = await usersData();
+  res.json({ users: usersList });
+})
 
-
-app.listen(() => console.log(`server running on port ${port}`));
+app.listen(port, () => console.log(`server running on port ${port}`));
