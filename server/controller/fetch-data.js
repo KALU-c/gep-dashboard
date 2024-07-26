@@ -29,3 +29,12 @@ export async function editUserData(id, userData) {
     console.log(err);
   }
 }
+
+export async function deleteUser(id) {
+  try {
+    await Users.findOneAndDelete({id: id});
+    console.log("User deleted successfully");
+  } catch(err) {
+    console.log(err);
+  }
+}

@@ -10,8 +10,35 @@ import {
 } from "@/components/ui/alert-dialog";
 import { ReactElement } from "react";
 import { UserProps } from "./Edit";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteUser } from "@/services/api-client";
 
 const DeleteAlert = ({ children, user }: { children: ReactElement, user: UserProps }) => {
+  const queryClient = useQueryClient();
+
+  const { mutateAsync: userDeleteMutation } = useMutation({
+    mutationFn: handleDelete,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] })
+    }
+  });
+
+  async function handleDelete() {
+    try {
+      await deleteUser(user.id);
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
+  async function handleDeleteButton() {
+    try {
+      await userDeleteMutation();
+    } catch(err) {
+      console.log(err);
+    }
+  }
+
   return (
     <AlertDialog>
       {children}
@@ -26,7 +53,7 @@ const DeleteAlert = ({ children, user }: { children: ReactElement, user: UserPro
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction>Delete</AlertDialogAction>
+            <AlertDialogAction onClick={handleDeleteButton}>Delete</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

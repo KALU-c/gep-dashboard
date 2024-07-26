@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
 import bodyParser from "body-parser";
-import { editUserData, fetchUserData } from "./controller/fetch-data.js";
+import { deleteUser, editUserData, fetchUserData } from "./controller/fetch-data.js";
 
 dotenv.config();
 const app = express();
@@ -19,7 +19,7 @@ app.get("/users", async (req, res) => {
   res.json({ users: usersList });
 });
 
-app.put("/edit/:id", async (req, res) => {
+app.put("user/edit/:id", async (req, res) => {
   const id = parseInt(req.params.id);
   const userData = req.body;
   userData.age = parseInt(userData.age);
@@ -31,5 +31,15 @@ app.put("/edit/:id", async (req, res) => {
     console.log(err);
   }
 });
+
+app.delete("user/delete/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+
+  try {
+    await deleteUser(id);
+  } catch(err) {
+    console.log(err);
+  }
+})
 
 app.listen(port, () => console.log(`server running on port ${port}`));
