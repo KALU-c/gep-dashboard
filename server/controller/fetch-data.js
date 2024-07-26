@@ -32,8 +32,8 @@ export async function editUserData(id, userData) {
 
 export async function deleteUser(id) {
   try {
-    await Users.findOneAndDelete({id: id});
-    console.log("User deleted successfully");
+    const deletedUser = await Users.findOneAndDelete({id: id});
+    return deletedUser;
   } catch(err) {
     console.log(err);
   }

@@ -19,7 +19,7 @@ app.get("/users", async (req, res) => {
   res.json({ users: usersList });
 });
 
-app.put("user/edit/:id", async (req, res) => {
+app.put("/edit/:id", async (req, res) => {
   const id = parseInt(req.params.id);
   const userData = req.body;
   userData.age = parseInt(userData.age);
@@ -32,11 +32,13 @@ app.put("user/edit/:id", async (req, res) => {
   }
 });
 
-app.delete("user/delete/:id", async (req, res) => {
+app.delete("/delete/:id", async (req, res) => {
   const id = parseInt(req.params.id);
 
   try {
-    await deleteUser(id);
+    const deletedUser = await deleteUser(id);
+
+    res.json({deletedUser})
   } catch(err) {
     console.log(err);
   }

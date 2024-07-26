@@ -19,15 +19,16 @@ const DeleteAlert = ({ children, user }: { children: ReactElement, user: UserPro
   const { mutateAsync: userDeleteMutation } = useMutation({
     mutationFn: handleDelete,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["users"] })
+      queryClient.invalidateQueries({ queryKey: ["users"] });
     }
   });
 
   async function handleDelete() {
     try {
-      await deleteUser(user.id);
+      const result = await deleteUser(user.id);
+      console.log(result);
     } catch(err) {
-      console.log(err)
+      console.log(err);
     }
   }
 
@@ -47,7 +48,7 @@ const DeleteAlert = ({ children, user }: { children: ReactElement, user: UserPro
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription>
               This action cannot be undone. This will permanently delete
-              <span className="font-bold"> {user.name}'s </span>
+              <span className="font-bold text-white"> {user.name}'s </span>
               account and remove their data from our servers.
             </AlertDialogDescription>
           </AlertDialogHeader>
