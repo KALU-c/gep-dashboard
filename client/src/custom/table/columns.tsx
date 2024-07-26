@@ -10,6 +10,7 @@ export type User = {
   age: number;
   phone: number;
   email: string;
+  education: string;
   date: Date | string;
 };
 
@@ -127,5 +128,5 @@ export const columns: ColumnDef<User>[] = [
 
       return <Edit user={user} />;
     },
-  },
+  }
 ];

@@ -1,21 +1,17 @@
-import { User, columns } from "./columns"
+import { useQuery } from "@tanstack/react-query";
+import { Skeleton } from "@/components/ui/skeleton";
+import { columns } from "./columns"
 import { DataTable } from "./data-table"
-import apiClient from "@/services/api-client";
-import { useEffect, useState } from "react";
+import { fetchUsers } from "@/services/api-client";
 
 export default function Page() {
-  const [ data, setData ] = useState<User[]>([]);
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["users"],
+    queryFn: fetchUsers
+  });
 
-  useEffect(() => {
-    const controller = new AbortController();
-
-    apiClient.get("/users", { signal: controller.signal })
-      .then(res => setData(res.data.users))
-      .catch(err => console.log(err))
-
-    return () => controller.abort();
-  }, []);
-
+  if (isLoading) return <Skeleton className="container mx-auto py-10 h-screen" />;
+  if (error) return <div className="container mx-auto py-10">Something went wrong...</div>;
 
   return (
     <div className="container mx-auto py-10">

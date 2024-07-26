@@ -16,11 +16,12 @@ import EditDialog from "./edit-dialog";
 import DeleteAlert from "./delete-alert";
 
 export type UserProps = {
+  id: number,
   name: string;
   age: number;
   phone: number;
   email: string;
-  education?: string;
+  education: string;
 };
 
 export default function Edit({ user }: { user: UserProps }) {

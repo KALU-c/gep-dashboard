@@ -6,17 +6,63 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { ReactElement } from "react";
+import { ChangeEvent, ReactElement, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { UserProps } from "./Edit";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { updateUser } from "@/services/api-client";
+import { DialogClose } from "@radix-ui/react-dialog";
 
-const EditDialog = ({ children, user }: { children: ReactElement, user: UserProps }) => {
+const EditDialog = ({
+  children,
+  user,
+}: {
+  children: ReactElement;
+  user: UserProps;
+}) => {
+  const queryClient = useQueryClient();
+
+  const [userInfo, setUserInfo] = useState({
+    name: user.name,
+    age: user.age,
+    phone: user.phone,
+    email: user.email,
+    education: user.education,
+  });
+
+  const { mutateAsync: updateUserMutation } = useMutation({
+    mutationFn: handleUpdatedUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+    },
+  });
+
+  async function handleUpdatedUser() {
+    try {
+      const updatedUser = await updateUser(user.id, userInfo);
+      setUserInfo(updatedUser);
+    } catch(err) {
+      console.log(err);
+    }
+  }
+
+  async function handleEdit() {
+    try {
+      await updateUserMutation();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    setUserInfo({ ...userInfo, [event.target.id]: event.target.value });
+  }
+
   return (
     <Dialog>
       {children}
-
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Edit User Info</DialogTitle>
@@ -29,7 +75,12 @@ const EditDialog = ({ children, user }: { children: ReactElement, user: UserProp
             <Label htmlFor="name" className="text-right">
               Age
             </Label>
-            <Input id="name" defaultValue={user.age} className="col-span-3" />
+            <Input
+              id="age"
+              defaultValue={userInfo.age}
+              onChange={(event) => handleChange(event)}
+              className="col-span-3"
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
@@ -37,7 +88,8 @@ const EditDialog = ({ children, user }: { children: ReactElement, user: UserProp
             </Label>
             <Input
               id="name"
-              defaultValue={`${user.name}`}
+              defaultValue={`${userInfo.name}`}
+              onChange={(event) => handleChange(event)}
               className="col-span-3"
             />
           </div>
@@ -45,24 +97,46 @@ const EditDialog = ({ children, user }: { children: ReactElement, user: UserProp
             <Label htmlFor="name" className="text-right">
               Phone
             </Label>
-            <Input id="name" defaultValue={user.phone} className="col-span-3" />
+            <Input
+              id="phone"
+              type="number"
+              defaultValue={userInfo.phone}
+              onChange={(event) => handleChange(event)}
+              className="col-span-3"
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
               Email
             </Label>
             <Input
-              id="name"
-              defaultValue={`${user.email}`}
+              id="email"
+              defaultValue={`${userInfo.email}`}
+              onChange={(event) => handleChange(event)}
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="name" className="text-right">
+              Education
+            </Label>
+            <Input
+              id="education"
+              defaultValue={`${userInfo.education}`}
+              onChange={(event) => handleChange(event)}
               className="col-span-3"
             />
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Save changes</Button>
+          <DialogClose>
+            <Button type="button" onClick={handleEdit}>
+              Save changes
+            </Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
-}
-export default EditDialog
+  );
+};
+export default EditDialog;
