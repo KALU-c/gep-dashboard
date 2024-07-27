@@ -11,8 +11,6 @@ const UsersSchema = new Schema({
 });
 
 const AdminSchema = new Schema({
-  name: String,
-  phone: Number,
   email: String,
   password: String
 });

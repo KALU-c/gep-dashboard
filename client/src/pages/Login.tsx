@@ -11,8 +11,32 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Navbar from "@/components/Navbar";
+import { ChangeEvent, useState } from "react";
+import { checkAdminInfo } from "@/services/api-client";
+
+export type AdminData = {
+  email: string
+  password: string
+}
 
 export default function Login() {
+  const [ adminInfo, setAdminInfo ] = useState<AdminData>({
+    email: "",
+    password: ""
+  });
+
+  async function handleSubmit() {
+    try {
+      await checkAdminInfo(adminInfo);
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    setAdminInfo({...adminInfo, [event.target.name]: event.target.value});
+  }
+
   return (
     <>
       <Navbar hideTabs={true} />
@@ -28,7 +52,7 @@ export default function Login() {
             <div className="grid gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="" required />
+                <Input name="email" id="email" type="email" placeholder="" required onChange={(event) => handleChange(event)} />
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
@@ -37,9 +61,9 @@ export default function Login() {
                 Forgot your password?
               </Link> */}
                 </div>
-                <Input id="password" type="password" required />
+                <Input name="password" id="password" type="password" required onChange={(event) => handleChange(event)} />
               </div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full" onClick={handleSubmit}>
                 Login
               </Button>
             </div>

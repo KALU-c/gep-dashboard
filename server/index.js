@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
 import bodyParser from "body-parser";
-import { deleteUser, editUserData, fetchUserData } from "./controller/fetch-data.js";
+import { checkAdmin, deleteUser, editUserData, fetchUserData } from "./controller/fetch-data.js";
 
 dotenv.config();
 const app = express();
@@ -41,6 +41,17 @@ app.delete("/delete/:id", async (req, res) => {
     res.json({deletedUser})
   } catch(err) {
     console.log(err);
+  }
+});
+
+app.post("/login", async (req, res) => {
+  // returns true or false, true to let the admin login
+
+  try {
+    const result = await checkAdmin(req.body.email, req.body.password);
+    res.json({ isAdmin: result });
+  } catch(err) {
+    console.log(err)
   }
 })
 
