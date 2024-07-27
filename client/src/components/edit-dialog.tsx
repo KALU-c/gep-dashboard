@@ -80,6 +80,7 @@ const EditDialog = ({
               defaultValue={userInfo.age}
               onChange={(event) => handleChange(event)}
               className="col-span-3"
+              required
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -91,6 +92,7 @@ const EditDialog = ({
               defaultValue={`${userInfo.name}`}
               onChange={(event) => handleChange(event)}
               className="col-span-3"
+              required
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -103,6 +105,7 @@ const EditDialog = ({
               defaultValue={userInfo.phone}
               onChange={(event) => handleChange(event)}
               className="col-span-3"
+              required
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -114,6 +117,7 @@ const EditDialog = ({
               defaultValue={`${userInfo.email}`}
               onChange={(event) => handleChange(event)}
               className="col-span-3"
+              required
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -125,6 +129,7 @@ const EditDialog = ({
               defaultValue={`${userInfo.education}`}
               onChange={(event) => handleChange(event)}
               className="col-span-3"
+              required
             />
           </div>
         </div>

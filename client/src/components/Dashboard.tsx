@@ -13,8 +13,9 @@ import {
 } from "@/components/ui/card";
 import Chart from "./Chart";
 import AdminList from "./AdminList";
+import { User } from "@/custom/table/users";
 
-export function Dashboard() {
+export function Dashboard({ users }: { users: User[] }) {
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
       <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
@@ -24,7 +25,7 @@ export function Dashboard() {
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">241</div>
+            <div className="text-2xl font-bold">{users?.length}</div>
             <p className="text-xs text-muted-foreground">
               +20.1% from last month
             </p>
