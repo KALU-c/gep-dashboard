@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -28,8 +29,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Trash2 } from "lucide-react";
-import { useState } from "react";
+// import { Trash2 } from "lucide-react";
+// import { fetchUsers } from "@/services/api-client";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -92,20 +93,37 @@ export function DataTable<TData, TValue>({
               className="max-w-sm"
             />
           </div>
+          <div className="flex items-center py-4">
+            <Input
+              placeholder="Filter phone"
+              value={
+                (table.getColumn("phone")?.getFilterValue() as string) ?? ""
+              }
+              onChange={(event) =>
+                table.getColumn("phone")?.setFilterValue(event.target.value)
+              }
+              className="max-w-sm"
+            />
+          </div>
         </div>
-
         <div className="flex gap-6 items-center ">
           <div className="flex-1 text-sm text-muted-foreground">
             {table.getFilteredSelectedRowModel().rows.length} of{" "}
             {table.getFilteredRowModel().rows.length} row(s) selected.
           </div>
-          <div>
+          {/* <div>
             {table.getFilteredSelectedRowModel().rows.length > 0 ? (
               <Trash2 className="h-1/6 text-red-400 cursor-pointer" />
             ) : (
               ""
             )}
-          </div>
+          </div> */}
+          {/* <div>
+            <Button 
+              className="bg-transparent focus:bg-accent hover:bg-accent border-2 border-accent"
+              onClick={fetchUsers}
+            >Refresh</Button>
+          </div> */}
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

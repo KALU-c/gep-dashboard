@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
 
@@ -26,109 +24,109 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 const chartData = [
-  { date: "2024-04-01", desktop: 222, mobile: 150 },
-  { date: "2024-04-02", desktop: 97, mobile: 180 },
-  { date: "2024-04-03", desktop: 167, mobile: 120 },
-  { date: "2024-04-04", desktop: 242, mobile: 260 },
-  { date: "2024-04-05", desktop: 373, mobile: 290 },
-  { date: "2024-04-06", desktop: 301, mobile: 340 },
-  { date: "2024-04-07", desktop: 245, mobile: 180 },
-  { date: "2024-04-08", desktop: 409, mobile: 320 },
-  { date: "2024-04-09", desktop: 59, mobile: 110 },
-  { date: "2024-04-10", desktop: 261, mobile: 190 },
-  { date: "2024-04-11", desktop: 327, mobile: 350 },
-  { date: "2024-04-12", desktop: 292, mobile: 210 },
-  { date: "2024-04-13", desktop: 342, mobile: 380 },
-  { date: "2024-04-14", desktop: 137, mobile: 220 },
-  { date: "2024-04-15", desktop: 120, mobile: 170 },
-  { date: "2024-04-16", desktop: 138, mobile: 190 },
-  { date: "2024-04-17", desktop: 446, mobile: 360 },
-  { date: "2024-04-18", desktop: 364, mobile: 410 },
-  { date: "2024-04-19", desktop: 243, mobile: 180 },
-  { date: "2024-04-20", desktop: 89, mobile: 150 },
-  { date: "2024-04-21", desktop: 137, mobile: 200 },
-  { date: "2024-04-22", desktop: 224, mobile: 170 },
-  { date: "2024-04-23", desktop: 138, mobile: 230 },
-  { date: "2024-04-24", desktop: 387, mobile: 290 },
-  { date: "2024-04-25", desktop: 215, mobile: 250 },
-  { date: "2024-04-26", desktop: 75, mobile: 130 },
-  { date: "2024-04-27", desktop: 383, mobile: 420 },
-  { date: "2024-04-28", desktop: 122, mobile: 180 },
-  { date: "2024-04-29", desktop: 315, mobile: 240 },
-  { date: "2024-04-30", desktop: 454, mobile: 380 },
-  { date: "2024-05-01", desktop: 165, mobile: 220 },
-  { date: "2024-05-02", desktop: 293, mobile: 310 },
-  { date: "2024-05-03", desktop: 247, mobile: 190 },
-  { date: "2024-05-04", desktop: 385, mobile: 420 },
-  { date: "2024-05-05", desktop: 481, mobile: 390 },
-  { date: "2024-05-06", desktop: 498, mobile: 520 },
-  { date: "2024-05-07", desktop: 388, mobile: 300 },
-  { date: "2024-05-08", desktop: 149, mobile: 210 },
-  { date: "2024-05-09", desktop: 227, mobile: 180 },
-  { date: "2024-05-10", desktop: 293, mobile: 330 },
-  { date: "2024-05-11", desktop: 335, mobile: 270 },
-  { date: "2024-05-12", desktop: 197, mobile: 240 },
-  { date: "2024-05-13", desktop: 197, mobile: 160 },
-  { date: "2024-05-14", desktop: 448, mobile: 490 },
-  { date: "2024-05-15", desktop: 473, mobile: 380 },
-  { date: "2024-05-16", desktop: 338, mobile: 400 },
-  { date: "2024-05-17", desktop: 499, mobile: 420 },
-  { date: "2024-05-18", desktop: 315, mobile: 350 },
-  { date: "2024-05-19", desktop: 235, mobile: 180 },
-  { date: "2024-05-20", desktop: 177, mobile: 230 },
-  { date: "2024-05-21", desktop: 82, mobile: 140 },
-  { date: "2024-05-22", desktop: 81, mobile: 120 },
-  { date: "2024-05-23", desktop: 252, mobile: 290 },
-  { date: "2024-05-24", desktop: 294, mobile: 220 },
-  { date: "2024-05-25", desktop: 201, mobile: 250 },
-  { date: "2024-05-26", desktop: 213, mobile: 170 },
-  { date: "2024-05-27", desktop: 420, mobile: 460 },
-  { date: "2024-05-28", desktop: 233, mobile: 190 },
-  { date: "2024-05-29", desktop: 78, mobile: 130 },
-  { date: "2024-05-30", desktop: 340, mobile: 280 },
-  { date: "2024-05-31", desktop: 178, mobile: 230 },
-  { date: "2024-06-01", desktop: 178, mobile: 200 },
-  { date: "2024-06-02", desktop: 470, mobile: 410 },
-  { date: "2024-06-03", desktop: 103, mobile: 160 },
-  { date: "2024-06-04", desktop: 439, mobile: 380 },
-  { date: "2024-06-05", desktop: 88, mobile: 140 },
-  { date: "2024-06-06", desktop: 294, mobile: 250 },
-  { date: "2024-06-07", desktop: 323, mobile: 370 },
-  { date: "2024-06-08", desktop: 385, mobile: 320 },
-  { date: "2024-06-09", desktop: 438, mobile: 480 },
-  { date: "2024-06-10", desktop: 155, mobile: 200 },
-  { date: "2024-06-11", desktop: 92, mobile: 150 },
-  { date: "2024-06-12", desktop: 492, mobile: 420 },
-  { date: "2024-06-13", desktop: 81, mobile: 130 },
-  { date: "2024-06-14", desktop: 426, mobile: 380 },
-  { date: "2024-06-15", desktop: 307, mobile: 350 },
-  { date: "2024-06-16", desktop: 371, mobile: 310 },
-  { date: "2024-06-17", desktop: 475, mobile: 520 },
-  { date: "2024-06-18", desktop: 107, mobile: 170 },
-  { date: "2024-06-19", desktop: 341, mobile: 290 },
-  { date: "2024-06-20", desktop: 408, mobile: 450 },
-  { date: "2024-06-21", desktop: 169, mobile: 210 },
-  { date: "2024-06-22", desktop: 317, mobile: 270 },
-  { date: "2024-06-23", desktop: 480, mobile: 530 },
-  { date: "2024-06-24", desktop: 132, mobile: 180 },
-  { date: "2024-06-25", desktop: 141, mobile: 190 },
-  { date: "2024-06-26", desktop: 434, mobile: 380 },
-  { date: "2024-06-27", desktop: 448, mobile: 490 },
-  { date: "2024-06-28", desktop: 149, mobile: 200 },
-  { date: "2024-06-29", desktop: 103, mobile: 160 },
-  { date: "2024-06-30", desktop: 446, mobile: 400 },
+  { date: "2024-04-01", male: 222, female: 150 },
+  { date: "2024-04-02", male: 97, female: 180 },
+  { date: "2024-04-03", male: 167, female: 120 },
+  { date: "2024-04-04", male: 242, female: 260 },
+  { date: "2024-04-05", male: 373, female: 290 },
+  { date: "2024-04-06", male: 301, female: 340 },
+  { date: "2024-04-07", male: 245, female: 180 },
+  { date: "2024-04-08", male: 409, female: 320 },
+  { date: "2024-04-09", male: 59, female: 110 },
+  { date: "2024-04-10", male: 261, female: 190 },
+  { date: "2024-04-11", male: 327, female: 350 },
+  { date: "2024-04-12", male: 292, female: 210 },
+  { date: "2024-04-13", male: 342, female: 380 },
+  { date: "2024-04-14", male: 137, female: 220 },
+  { date: "2024-04-15", male: 120, female: 170 },
+  { date: "2024-04-16", male: 138, female: 190 },
+  { date: "2024-04-17", male: 446, female: 360 },
+  { date: "2024-04-18", male: 364, female: 410 },
+  { date: "2024-04-19", male: 243, female: 180 },
+  { date: "2024-04-20", male: 89, female: 150 },
+  { date: "2024-04-21", male: 137, female: 200 },
+  { date: "2024-04-22", male: 224, female: 170 },
+  { date: "2024-04-23", male: 138, female: 230 },
+  { date: "2024-04-24", male: 387, female: 290 },
+  { date: "2024-04-25", male: 215, female: 250 },
+  { date: "2024-04-26", male: 75, female: 130 },
+  { date: "2024-04-27", male: 383, female: 420 },
+  { date: "2024-04-28", male: 122, female: 180 },
+  { date: "2024-04-29", male: 315, female: 240 },
+  { date: "2024-04-30", male: 454, female: 380 },
+  { date: "2024-05-01", male: 165, female: 220 },
+  { date: "2024-05-02", male: 293, female: 310 },
+  { date: "2024-05-03", male: 247, female: 190 },
+  { date: "2024-05-04", male: 385, female: 420 },
+  { date: "2024-05-05", male: 481, female: 390 },
+  { date: "2024-05-06", male: 498, female: 520 },
+  { date: "2024-05-07", male: 388, female: 300 },
+  { date: "2024-05-08", male: 149, female: 210 },
+  { date: "2024-05-09", male: 227, female: 180 },
+  { date: "2024-05-10", male: 293, female: 330 },
+  { date: "2024-05-11", male: 335, female: 270 },
+  { date: "2024-05-12", male: 197, female: 240 },
+  { date: "2024-05-13", male: 197, female: 160 },
+  { date: "2024-05-14", male: 448, female: 490 },
+  { date: "2024-05-15", male: 473, female: 380 },
+  { date: "2024-05-16", male: 338, female: 400 },
+  { date: "2024-05-17", male: 499, female: 420 },
+  { date: "2024-05-18", male: 315, female: 350 },
+  { date: "2024-05-19", male: 235, female: 180 },
+  { date: "2024-05-20", male: 177, female: 230 },
+  { date: "2024-05-21", male: 82, female: 140 },
+  { date: "2024-05-22", male: 81, female: 120 },
+  { date: "2024-05-23", male: 252, female: 290 },
+  { date: "2024-05-24", male: 294, female: 220 },
+  { date: "2024-05-25", male: 201, female: 250 },
+  { date: "2024-05-26", male: 213, female: 170 },
+  { date: "2024-05-27", male: 420, female: 460 },
+  { date: "2024-05-28", male: 233, female: 190 },
+  { date: "2024-05-29", male: 78, female: 130 },
+  { date: "2024-05-30", male: 340, female: 280 },
+  { date: "2024-05-31", male: 178, female: 230 },
+  { date: "2024-06-01", male: 178, female: 200 },
+  { date: "2024-06-02", male: 470, female: 410 },
+  { date: "2024-06-03", male: 103, female: 160 },
+  { date: "2024-06-04", male: 439, female: 380 },
+  { date: "2024-06-05", male: 88, female: 140 },
+  { date: "2024-06-06", male: 294, female: 250 },
+  { date: "2024-06-07", male: 323, female: 370 },
+  { date: "2024-06-08", male: 385, female: 320 },
+  { date: "2024-06-09", male: 438, female: 480 },
+  { date: "2024-06-10", male: 155, female: 200 },
+  { date: "2024-06-11", male: 92, female: 150 },
+  { date: "2024-06-12", male: 492, female: 420 },
+  { date: "2024-06-13", male: 81, female: 130 },
+  { date: "2024-06-14", male: 426, female: 380 },
+  { date: "2024-06-15", male: 307, female: 350 },
+  { date: "2024-06-16", male: 371, female: 310 },
+  { date: "2024-06-17", male: 475, female: 520 },
+  { date: "2024-06-18", male: 107, female: 170 },
+  { date: "2024-06-19", male: 341, female: 290 },
+  { date: "2024-06-20", male: 408, female: 450 },
+  { date: "2024-06-21", male: 169, female: 210 },
+  { date: "2024-06-22", male: 317, female: 270 },
+  { date: "2024-06-23", male: 480, female: 530 },
+  { date: "2024-06-24", male: 132, female: 180 },
+  { date: "2024-06-25", male: 141, female: 190 },
+  { date: "2024-06-26", male: 434, female: 380 },
+  { date: "2024-06-27", male: 448, female: 490 },
+  { date: "2024-06-28", male: 149, female: 200 },
+  { date: "2024-06-29", male: 103, female: 160 },
+  { date: "2024-06-30", male: 446, female: 400 },
 ]
 
 const chartConfig = {
   visitors: {
     label: "Visitors",
   },
-  desktop: {
-    label: "Desktop",
+  male: {
+    label: "Male",
     color: "hsl(var(--chart-1))",
   },
-  mobile: {
-    label: "Mobile",
+  female: {
+    label: "Female",
     color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig
@@ -185,27 +183,27 @@ export default function Chart() {
         >
           <AreaChart data={filteredData}>
             <defs>
-              <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id="fillmale" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="5%"
-                  stopColor="var(--color-desktop)"
+                  stopColor="var(--color-male)"
                   stopOpacity={0.8}
                 />
                 <stop
                   offset="95%"
-                  stopColor="var(--color-desktop)"
+                  stopColor="var(--color-male)"
                   stopOpacity={0.1}
                 />
               </linearGradient>
-              <linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id="fillfemale" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="5%"
-                  stopColor="var(--color-mobile)"
+                  stopColor="var(--color-female)"
                   stopOpacity={0.8}
                 />
                 <stop
                   offset="95%"
-                  stopColor="var(--color-mobile)"
+                  stopColor="var(--color-female)"
                   stopOpacity={0.1}
                 />
               </linearGradient>
@@ -240,17 +238,17 @@ export default function Chart() {
               }
             />
             <Area
-              dataKey="mobile"
+              dataKey="female"
               type="natural"
-              fill="url(#fillMobile)"
-              stroke="var(--color-mobile)"
+              fill="url(#fillfemale)"
+              stroke="var(--color-female)"
               stackId="a"
             />
             <Area
-              dataKey="desktop"
+              dataKey="male"
               type="natural"
-              fill="url(#fillDesktop)"
-              stroke="var(--color-desktop)"
+              fill="url(#fillmale)"
+              stroke="var(--color-male)"
               stackId="a"
             />
             <ChartLegend content={<ChartLegendContent />} />
