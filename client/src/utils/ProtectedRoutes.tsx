@@ -1,9 +1,11 @@
+import { AuthContext } from "@/hooks/AuthContext";
+import { useContext } from "react";
 import { Outlet, Navigate } from "react-router-dom";
 
-const ProtectedRotes = () => {
-  const user = true;
+const ProtectedRoutes = () => {
+  const { admin } = useContext(AuthContext)
 
-  return user ? <Outlet /> : <Navigate to="/login" />
+  return admin ? <Outlet /> : <Navigate to="/login" />
 }
 
-export default ProtectedRotes
+export default ProtectedRoutes

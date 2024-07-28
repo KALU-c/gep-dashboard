@@ -1,9 +1,9 @@
 import { UserProps } from "@/components/Edit";
 import { AdminData } from "@/pages/Login";
+// import { AdminData } from "@/pages/Login";
 import axios from "axios";
-import { useState } from "react";
 
-const apiClient =  axios.create({
+export const apiClient =  axios.create({
   baseURL: "http://localhost:3000"
 });
 
@@ -36,8 +36,10 @@ export async function deleteUser(id: number) {
 export async function checkAdminInfo(adminInfo: AdminData) {
   try {
     const result = await apiClient.post("/login", adminInfo);
-
+    return result.data.isAdmin;
+    // returns true / false
   } catch(err) {
     console.log(err);
+    return false;
   }
 }

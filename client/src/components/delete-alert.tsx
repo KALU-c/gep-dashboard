@@ -25,8 +25,7 @@ const DeleteAlert = ({ children, user }: { children: ReactElement, user: UserPro
 
   async function handleDelete() {
     try {
-      const result = await deleteUser(user.id);
-      console.log(result);
+      await deleteUser(user.id);
     } catch(err) {
       console.log(err);
     }

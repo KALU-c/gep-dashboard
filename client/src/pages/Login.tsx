@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { checkAdminInfo } from "@/services/api-client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,8 +11,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Navbar from "@/components/Navbar";
-import { ChangeEvent, useState } from "react";
-import { checkAdminInfo } from "@/services/api-client";
+import { ChangeEvent, useContext, useState } from "react";
+import { AuthContext } from "@/hooks/AuthContext";
 
 export type AdminData = {
   email: string
@@ -20,6 +20,9 @@ export type AdminData = {
 }
 
 export default function Login() {
+  const { setAdmin } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const [ adminInfo, setAdminInfo ] = useState<AdminData>({
     email: "",
     password: ""
@@ -27,9 +30,13 @@ export default function Login() {
 
   async function handleSubmit() {
     try {
-      await checkAdminInfo(adminInfo);
+      const result = await checkAdminInfo(adminInfo);
+      setAdmin(result);
+      if(result) {
+        navigate("/");
+      }
     } catch(err) {
-      console.log(err)
+      console.log(err);
     }
   }
 
