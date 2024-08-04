@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Navbar from "@/components/Navbar";
 import { ChangeEvent, useContext, useState } from "react";
-import { AuthContext } from "@/hooks/AuthContext";
+import { AuthContext } from "@/contexts/AuthContext";
 
 export type AdminData = {
   email: string

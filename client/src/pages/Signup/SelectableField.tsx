@@ -1,3 +1,4 @@
+import { RegisterContext } from "@/contexts/RegisterContext"
 import { Label } from "../../components/ui/label"
 
 import {
@@ -8,17 +9,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../components/ui/select"
+import { useContext } from "react"
 
 type Props = {
   label: string
   option: string[]
+  name: string
 }
 
-const SelectableField = ({ option, label }: Props) => {
+const SelectableField = ({ option, label, name }: Props) => {
+  const { userInfo, setUserInfo } = useContext(RegisterContext);
+
   return (
     <div className="grid gap-2">
-      <Label htmlFor="last-name">{label}</Label>
-      <Select defaultValue="Male">
+      <Label htmlFor={`${label}`}>{label}</Label>
+      <Select defaultValue="" disabled={false} name={`${name}`} onValueChange={value => setUserInfo({...userInfo, [name]: value})}>
         <SelectTrigger className="w-full">
           <SelectValue placeholder="" />
         </SelectTrigger>

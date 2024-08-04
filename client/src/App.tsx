@@ -7,7 +7,7 @@ import Login from "./pages/Login";
 // import Register from "./pages/Register";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import { useState } from "react";
-import { AuthContext } from "./hooks/AuthContext";
+import { AuthContext } from "./contexts/AuthContext";
 import { SignupForm } from "./pages/SignupForm";
 
 const queryClient = new QueryClient();
