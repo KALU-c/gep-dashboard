@@ -19,7 +19,7 @@ export function SignupForm() {
   return (
     <>
     <Navbar hideTabs={true} />
-    <div className=" min-h-screen h-full flex justify-center items-center">
+    <div className="mt-10 flex justify-center items-center">
       <Card className="mx-auto">
         <CardHeader>
           <CardTitle className="text-xl">GEP</CardTitle>
@@ -36,19 +36,29 @@ export function SignupForm() {
             </div>
             <div className="grid grid-cols-3 gap-4">
               <InputField text="እድሜ" />
-              <InputField text="የቤተሰብ ብዛት" />
+              <InputField text="ስልክ ቁጥር" />
+              {/* <InputField text="የቤተሰብ ብዛት" /> */}
               <SelectableField
                 label="ጾታ"
-                option1="ወንድ"
-                option2="ሴት" 
+                option={["ወንድ", "ሴት"]}
+                // option1="ወንድ"
+                // option2="ሴት" 
               />
             </div>
             <div className="grid grid-cols-3 gap-4">
               <InputField text="የትምህርት ደረጃ" />
-              <InputField text="የመኖሪያ አድራሻ" />
-              <InputField text="ስልክ ቁጥር" />
+              {/* <SelectableField
+                label="ጾታ"
+                option1="ወንድ"
+                option2="ሴት" 
+              /> */}
+              
+              
+              {/* <InputField text="የመኖሪያ አድራሻ" /> */}
+              {/* <InputField text="ስልክ ቁጥር" /> */}
             </div>
-            <div className="flex justify-between my-4 mx-2">
+            <DatePicker />
+            {/* <div className="flex justify-between my-4 mx-2">
               <RadioField
                 label="ጋብቻ"
                 option1="ያገባ"
@@ -69,18 +79,18 @@ export function SignupForm() {
                 option1="የተጠመቀ"
                 option2="ያልትጠመቀ" 
               />
-            </div>
-            <DatePicker />
+            </div> */}
+            
             <Button type="submit" className="w-full">
               Create an account
             </Button>
           </div>
-          <div className="mt-4 text-center text-sm">
+          {/* <div className="mt-4 text-center text-sm">
             Already have an account?{" "}
             <Link to="/login" className="underline">
               Sign in
             </Link>
-          </div>
+          </div> */}
         </CardContent>
       </Card>
     </div>

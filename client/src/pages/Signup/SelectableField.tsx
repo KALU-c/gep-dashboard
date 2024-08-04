@@ -9,13 +9,12 @@ import {
   SelectValue,
 } from "../../components/ui/select"
 
-interface Props {
+type Props = {
   label: string
-  option1: string
-  option2: string
+  option: string[]
 }
 
-const SelectableField = ({ label, option1, option2 }: Props) => {
+const SelectableField = ({ option, label }: Props) => {
   return (
     <div className="grid gap-2">
       <Label htmlFor="last-name">{label}</Label>
@@ -25,8 +24,11 @@ const SelectableField = ({ label, option1, option2 }: Props) => {
         </SelectTrigger>
         <SelectContent className="text-white opacity-100">
           <SelectGroup>
-            <SelectItem value="male">{option1}</SelectItem>
-            <SelectItem value="female">{option2}</SelectItem>
+            {
+              option.map((list, index) => (
+                <SelectItem key={index} value={`${list}`}>{list}</SelectItem>
+              ))
+            }
           </SelectGroup>
         </SelectContent>
       </Select>
