@@ -4,10 +4,11 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Users from "./pages/Users";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
+// import Register from "./pages/Register";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import { useState } from "react";
 import { AuthContext } from "./hooks/AuthContext";
+import { SignupForm } from "./pages/SignupForm";
 
 const queryClient = new QueryClient();
 
@@ -24,7 +25,7 @@ function App() {
               <Route path="/users" element={<Users />} />
             </Route>
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/register" element={<SignupForm />} />
           </Routes>
         </AuthContext.Provider>
       </ThemeProvider>
