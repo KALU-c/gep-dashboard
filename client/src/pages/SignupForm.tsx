@@ -37,25 +37,16 @@ export function SignupForm() {
             <div className="grid grid-cols-3 gap-4">
               <InputField text="እድሜ" />
               <InputField text="ስልክ ቁጥር" />
-              {/* <InputField text="የቤተሰብ ብዛት" /> */}
               <SelectableField
                 label="ጾታ"
                 option={["ወንድ", "ሴት"]}
-                // option1="ወንድ"
-                // option2="ሴት" 
               />
             </div>
             <div className="grid grid-cols-3 gap-4">
-              <InputField text="የትምህርት ደረጃ" />
-              {/* <SelectableField
-                label="ጾታ"
-                option1="ወንድ"
-                option2="ሴት" 
-              /> */}
-              
-              
-              {/* <InputField text="የመኖሪያ አድራሻ" /> */}
-              {/* <InputField text="ስልክ ቁጥር" /> */}
+              <SelectableField
+                label="የትምህርት ደረጃ"
+                option={["1 - 8", "8 - 10", "11 - 12", "UnderGraduate", "PostGraduate"]}
+              />
             </div>
             <DatePicker />
             {/* <div className="flex justify-between my-4 mx-2">

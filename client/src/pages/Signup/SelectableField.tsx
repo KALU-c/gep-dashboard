@@ -19,7 +19,7 @@ const SelectableField = ({ option, label }: Props) => {
     <div className="grid gap-2">
       <Label htmlFor="last-name">{label}</Label>
       <Select defaultValue="Male">
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-full">
           <SelectValue placeholder="" />
         </SelectTrigger>
         <SelectContent className="text-white opacity-100">
