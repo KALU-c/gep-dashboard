@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
 import bodyParser from "body-parser";
-import { checkAdmin, deleteUser, editUserData, fetchUserData } from "./controller/fetch-data.js";
+import { checkAdmin, deleteUser, editUserData, fetchUserData } from "./controller/mongoose.js";
 
 dotenv.config();
 const app = express();
