@@ -61,3 +61,19 @@ export async function checkAdmin(email, password) {
     return "Something went wrong";
   }
 }
+
+export async function addUser(userData) {
+  // returns true if the user added successfully
+  
+  try {
+    const response = await Users.insertMany([userData]);
+    if(response.acknowledged) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch(err) {
+    console.log(err);
+    return false;
+  }
+}

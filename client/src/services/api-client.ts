@@ -1,5 +1,6 @@
 import { UserProps } from "@/components/Edit";
 import { AdminData } from "@/pages/Login";
+import { UserInfoType } from "@/pages/SignupForm";
 // import { AdminData } from "@/pages/Login";
 import axios from "axios";
 
@@ -41,5 +42,14 @@ export async function checkAdminInfo(adminInfo: AdminData) {
   } catch(err) {
     console.log(err);
     return false;
+  }
+}
+
+export async function addUser(userInfo: UserInfoType) {
+  try {
+    const result = await apiClient.post("/add", userInfo);
+    return result;
+  } catch(err) {
+    console.log(err);
   }
 }

@@ -10,6 +10,14 @@ const UsersSchema = new Schema({
   registrationDate: Date
 });
 
+// const UsersSchema = new Schema({
+//   name: String,
+//   age: String,
+//   phone: String,
+//   education: String,
+//   date: String
+// })
+
 const AdminSchema = new Schema({
   email: String,
   password: String

@@ -13,6 +13,7 @@ import InputField from "./Signup/InputField";
 import SelectableField from "./Signup/SelectableField";
 import Navbar from "@/components/Navbar";
 import { RegisterContext } from "@/contexts/RegisterContext";
+import { addUser } from "@/services/api-client";
 
 export type UserInfoType = {
   firstName: string
@@ -40,7 +41,18 @@ export function SignupForm() {
   });
 
   function handleSubmit() {
-    console.log(userInfo);
+    addUser(userInfo);
+    setUserInfo({
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      age: "",
+      phone: "",
+      gender: "",
+      education: "",
+      church: "",
+      fellowShip: ""
+    });
   }
 
   return (
