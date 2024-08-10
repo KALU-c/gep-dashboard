@@ -67,7 +67,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center backdrop-blur-md">
         <div className="flex gap-6">
           <div className="flex items-center py-4">
             <Input
@@ -153,7 +153,7 @@ export function DataTable<TData, TValue>({
           </DropdownMenu>
         </div>
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-md border backdrop-blur-md">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
