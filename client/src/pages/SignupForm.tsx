@@ -61,9 +61,9 @@ export function SignupForm() {
       <RegisterContext.Provider value={{ userInfo, setUserInfo }}>
         <div className="mt-10 flex justify-center items-center">
           <Card className="mx-auto">
-            <CardHeader>
-              <CardTitle className="text-xl">GEP</CardTitle>
-              <CardDescription>
+            <CardHeader className="mb-5">
+              <CardTitle className="text-6xl text-center">GEP</CardTitle>
+              <CardDescription className="text-center">
                 Enter your information to create an account
               </CardDescription>
             </CardHeader>
