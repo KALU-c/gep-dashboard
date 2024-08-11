@@ -5,11 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import Edit from "@/components/Edit";
 export type User = {
-  id: number;
-  name: string;
+  firstName: string;
+  middleName: string;
+  lastName: string;
   age: number;
+  gender: string;
   phone: number;
-  email: string;
+  church: string;
   education: string;
   date: Date | string;
 };
