@@ -25,11 +25,16 @@ const EditDialog = ({
   const queryClient = useQueryClient();
 
   const [userInfo, setUserInfo] = useState({
-    name: user.name,
+    id: user.id,
+    firstName: user.firstName,
+    middleName: user.middleName,
+    lastName: user.lastName,
     age: user.age,
     phone: user.phone,
-    email: user.email,
+    gender: user.gender,
     education: user.education,
+    church: user.church,
+    fellowShip: user.fellowShip,
   });
 
   const { mutateAsync: updateUserMutation } = useMutation({
@@ -43,7 +48,7 @@ const EditDialog = ({
     try {
       const updatedUser = await updateUser(user.id, userInfo);
       setUserInfo(updatedUser);
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
   }
@@ -85,11 +90,35 @@ const EditDialog = ({
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
-              Name
+              First Name
             </Label>
             <Input
-              id="name"
-              defaultValue={`${userInfo.name}`}
+              id="firstName"
+              defaultValue={`${userInfo.firstName}`}
+              onChange={(event) => handleChange(event)}
+              className="col-span-3"
+              required
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="name" className="text-right">
+              Middle Name
+            </Label>
+            <Input
+              id="middleName"
+              defaultValue={`${userInfo.middleName}`}
+              onChange={(event) => handleChange(event)}
+              className="col-span-3"
+              required
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="name" className="text-right">
+              Last Name
+            </Label>
+            <Input
+              id="lastName"
+              defaultValue={`${userInfo.lastName}`}
               onChange={(event) => handleChange(event)}
               className="col-span-3"
               required
@@ -101,7 +130,7 @@ const EditDialog = ({
             </Label>
             <Input
               id="phone"
-              type="number"
+              type="string"
               defaultValue={userInfo.phone}
               onChange={(event) => handleChange(event)}
               className="col-span-3"
@@ -109,24 +138,36 @@ const EditDialog = ({
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Email
+            <Label htmlFor="education" className="text-right">
+              Education
             </Label>
             <Input
-              id="email"
-              defaultValue={`${userInfo.email}`}
+              id="education"
+              defaultValue={`${userInfo.education}`}
               onChange={(event) => handleChange(event)}
               className="col-span-3"
               required
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Education
+            <Label htmlFor="church" className="text-right">
+              Church
             </Label>
             <Input
-              id="education"
-              defaultValue={`${userInfo.education}`}
+              id="church"
+              defaultValue={`${userInfo.church}`}
+              onChange={(event) => handleChange(event)}
+              className="col-span-3"
+              required
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="fellowShip" className="text-right">
+              Fellow Ship
+            </Label>
+            <Input
+              id="fellowShip"
+              defaultValue={`${userInfo.fellowShip}`}
               onChange={(event) => handleChange(event)}
               className="col-span-3"
               required

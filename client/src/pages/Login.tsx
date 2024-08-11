@@ -15,33 +15,33 @@ import { ChangeEvent, useContext, useState } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
 
 export type AdminData = {
-  email: string
-  password: string
-}
+  email: string;
+  password: string;
+};
 
 export default function Login() {
   const { setAdmin } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const [ adminInfo, setAdminInfo ] = useState<AdminData>({
+  const [adminInfo, setAdminInfo] = useState<AdminData>({
     email: "",
-    password: ""
+    password: "",
   });
 
   async function handleSubmit() {
     try {
       const result = await checkAdminInfo(adminInfo);
       setAdmin(result);
-      if(result) {
+      if (result) {
         navigate("/");
       }
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
   }
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    setAdminInfo({...adminInfo, [event.target.name]: event.target.value});
+    setAdminInfo({ ...adminInfo, [event.target.name]: event.target.value });
   }
 
   return (
@@ -59,7 +59,14 @@ export default function Login() {
             <div className="grid gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
-                <Input name="email" id="email" type="email" placeholder="" required onChange={(event) => handleChange(event)} />
+                <Input
+                  name="email"
+                  id="email"
+                  type="email"
+                  placeholder=""
+                  required
+                  onChange={(event) => handleChange(event)}
+                />
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
@@ -68,7 +75,13 @@ export default function Login() {
                 Forgot your password?
               </Link> */}
                 </div>
-                <Input name="password" id="password" type="password" required onChange={(event) => handleChange(event)} />
+                <Input
+                  name="password"
+                  id="password"
+                  type="password"
+                  required
+                  onChange={(event) => handleChange(event)}
+                />
               </div>
               <Button type="submit" className="w-full" onClick={handleSubmit}>
                 Login

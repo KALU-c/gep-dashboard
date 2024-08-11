@@ -6,11 +6,12 @@ import { RegisterContext } from "@/contexts/RegisterContext"
 interface Props {
   text: string
   name: string
+  className?: string
 }
 
 // add value attribute to the Input element
 
-const InputField = ({ text, name }: Props) => {
+const InputField = ({ text, name, className }: Props) => {
   const { userInfo, setUserInfo } = useContext(RegisterContext);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
@@ -21,7 +22,7 @@ const InputField = ({ text, name }: Props) => {
   }
 
   return (
-    <div className="grid gap-2">
+    <div className={`grid gap-2 ${className}`}>
       <Label htmlFor={`${name}`}>{text}</Label>
       <Input name={`${name}`} required onChange={(event) => handleChange(event)}/>
     </div>

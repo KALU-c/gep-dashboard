@@ -13,20 +13,26 @@ import { UserProps } from "./Edit";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteUser } from "@/services/api-client";
 
-const DeleteAlert = ({ children, user }: { children: ReactElement, user: UserProps }) => {
+const DeleteAlert = ({
+  children,
+  user,
+}: {
+  children: ReactElement;
+  user: UserProps;
+}) => {
   const queryClient = useQueryClient();
 
   const { mutateAsync: userDeleteMutation } = useMutation({
     mutationFn: handleDelete,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
-    }
+    },
   });
 
   async function handleDelete() {
     try {
       await deleteUser(user.id);
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
   }
@@ -34,7 +40,7 @@ const DeleteAlert = ({ children, user }: { children: ReactElement, user: UserPro
   async function handleDeleteButton() {
     try {
       await userDeleteMutation();
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
   }
@@ -43,20 +49,22 @@ const DeleteAlert = ({ children, user }: { children: ReactElement, user: UserPro
     <AlertDialog>
       {children}
       <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete
-              <span className="font-bold text-white"> {user.name}'s </span>
-              account and remove their data from our servers.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleDeleteButton}>Delete</AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-  )
-}
-export default DeleteAlert
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete
+            <span className="font-bold text-white"> {[user.firstName, user.middleName].join()}'s </span>
+            account and remove their data from our servers.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={handleDeleteButton}>
+            Delete
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+};
+export default DeleteAlert;

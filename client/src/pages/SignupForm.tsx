@@ -59,7 +59,7 @@ export function SignupForm() {
     <>
       <Navbar hideTabs={true} />
       <RegisterContext.Provider value={{ userInfo, setUserInfo }}>
-        <div className="mt-10 flex justify-center items-center">
+        <div className="mt-10 flex justify-center items-center mb-10">
           <Card className="mx-auto">
             <CardHeader className="mb-5">
               <CardTitle className="text-6xl text-center">GEP</CardTitle>
@@ -69,15 +69,15 @@ export function SignupForm() {
             </CardHeader>
             <CardContent>
               <div className="grid gap-4">
-                <div className="grid grid-cols-3 gap-4">
-                  <InputField text="ስም" name="firstName"/>
-                  <InputField text="የአባት ስም" name="middleName"/>
-                  <InputField text="የአያት ስም" name="lastName"/>
+                <div className="grid grid-cols-3 gap-4 grid-flow-row-dense">
+                  <InputField text="ስም" name="firstName" className="col-span-3 sm:col-span-1"/>
+                  <InputField text="የአባት ስም" name="middleName" className="col-span-3 sm:col-span-1"/>
+                  <InputField text="የአያት ስም" name="lastName" className="col-span-3 sm:col-span-1"/>
                 </div>
                 <div className="grid grid-cols-3 gap-4">
-                  <InputField text="እድሜ" name="age"/>
-                  <InputField text="ስልክ ቁጥር" name="phone"/>
-                  <SelectableField label="ጾታ" option={["ወንድ", "ሴት"]} name="gender"/>
+                  <InputField text="እድሜ" name="age" className="col-span-3 sm:col-span-1"/>
+                  <InputField text="ስልክ ቁጥር" name="phone" className="col-span-3 sm:col-span-1"/>
+                  <SelectableField label="ጾታ" option={["ወንድ", "ሴት"]} name="gender" className="col-span-3 sm:col-span-1"/>
                 </div>
                 <div className="grid grid-cols-3 gap-4">
                   <SelectableField
@@ -90,16 +90,19 @@ export function SignupForm() {
                       "PostGraduate",
                     ]}
                     name="education"
+                    className="col-span-3 sm:col-span-1"
                   />
                   <SelectableField
                     label="ቤተ ክርይስታን"
                     option={["U", "ለ", "ሐ", "መ", "ሠ"]}
                     name="church"
+                    className="col-span-3 sm:col-span-1"
                   />
                   <SelectableField
                     label="ህብረት"
                     option={["ረ", "ሰ", "ሸ", "ቀ", "በ"]}
                     name="fellowShip"
+                    className="col-span-3 sm:col-span-1"
                   />
                 </div>
                 {/* <DatePicker />*/}
@@ -108,6 +111,7 @@ export function SignupForm() {
                 </Button>
               </div>
             </CardContent>
+        <p className="m-0 p-0 text-xs text-center mb-1">Created by: <span className="text-orange-500">HMYC Digital Team</span></p>
           </Card>
         </div>
       </RegisterContext.Provider>

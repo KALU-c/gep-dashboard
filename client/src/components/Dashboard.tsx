@@ -1,16 +1,7 @@
-import {
-  Activity,
-  CreditCard,
-  Users,
-} from "lucide-react";
+import { Activity, CreditCard, Users } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Chart from "./Chart";
 import AdminList from "./AdminList";
 import { User } from "@/custom/table/users";
@@ -57,14 +48,14 @@ export function Dashboard({ users }: { users: User[] }) {
         </Card>
         <Card x-chunk="dashboard-01-chunk-3">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Expected Total Users</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Expected Total Users
+            </CardTitle>
             <Activity className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">500</div>
-            <p className="text-xs text-muted-foreground">
-              +259 total users
-            </p>
+            <p className="text-xs text-muted-foreground">+259 total users</p>
           </CardContent>
         </Card>
       </div>
@@ -148,7 +139,6 @@ export function Dashboard({ users }: { users: User[] }) {
           </CardContent>
         </Card>
       </div>
-      
     </main>
   );
 }

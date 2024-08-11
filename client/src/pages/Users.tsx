@@ -1,5 +1,5 @@
-import Navbar from "@/components/Navbar"
-import Page from "@/custom/table/Page"
+import Navbar from "@/components/Navbar";
+import Page from "@/custom/table/Page";
 
 const Users = () => {
   return (
@@ -7,6 +7,6 @@ const Users = () => {
       <Navbar />
       <Page />
     </>
-  )
-}
-export default Users
+  );
+};
+export default Users;

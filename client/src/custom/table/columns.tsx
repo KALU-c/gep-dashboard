@@ -5,15 +5,17 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import Edit from "@/components/Edit";
 export type User = {
+  id: number,
   firstName: string;
   middleName: string;
   lastName: string;
   age: number;
   gender: string;
-  phone: number;
-  church: string;
+  phone: string;
   education: string;
-  date: Date | string;
+  church: string;
+  fellowShip: string;
+  date: string;
 };
 
 export const columns: ColumnDef<User>[] = [
@@ -59,14 +61,28 @@ export const columns: ColumnDef<User>[] = [
     },
   },
   {
-    accessorKey: "name",
+    accessorKey: "firstName",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Name
+          First Name
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
+  {
+    accessorKey: "middleName",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Middle Name
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -96,14 +112,14 @@ export const columns: ColumnDef<User>[] = [
     header: "Phone",
   },
   {
-    accessorKey: "email",
+    accessorKey: "church",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Email
+          Church
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -121,6 +137,19 @@ export const columns: ColumnDef<User>[] = [
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
+    },
+    cell: ({ row }) => {
+      const date = new Date(row.getValue("date"));
+
+      const formattedDate = date.toISOString().split('T')[0];
+
+      // const year = date.getFullYear();
+      // const month = String(date.getMonth() + 1).padStart(2, '0');
+      // const day = String(date.getDate()).padStart(2, '0');
+
+      // const formattedDate = `${year}-${month}-${day}`;
+
+      return <div className="lg:px-8 sm:px-3 md:px-4">{formattedDate}</div>;
     },
   },
   {

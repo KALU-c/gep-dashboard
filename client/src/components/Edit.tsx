@@ -17,11 +17,15 @@ import DeleteAlert from "./delete-alert";
 
 export type UserProps = {
   id: number,
-  name: string;
+  firstName: string;
+  middleName: string;
+  lastName: string;
   age: number;
-  phone: number;
-  email: string;
+  gender: string;
+  phone: string;
   education: string;
+  church: string;
+  fellowShip: string;
 };
 
 export default function Edit({ user }: { user: UserProps }) {
@@ -51,11 +55,11 @@ export default function Edit({ user }: { user: UserProps }) {
             </AlertDialogTrigger>
             <DropdownMenuSeparator />
             <DropdownMenuItem>View detail</DropdownMenuItem>
-            <DropdownMenuItem
+            {/* <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(user.name)}
             >
               Copy user's name
-            </DropdownMenuItem>
+            </DropdownMenuItem> */}
           </DropdownMenuContent>
         </DropdownMenu>
       </DeleteAlert>

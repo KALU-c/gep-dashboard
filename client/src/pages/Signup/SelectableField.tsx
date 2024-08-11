@@ -15,13 +15,14 @@ type Props = {
   label: string
   option: string[]
   name: string
+  className?: string
 }
 
-const SelectableField = ({ option, label, name }: Props) => {
+const SelectableField = ({ option, label, name, className }: Props) => {
   const { userInfo, setUserInfo } = useContext(RegisterContext);
 
   return (
-    <div className="grid gap-2">
+    <div className={`grid gap-2 ${className}`}>
       <Label htmlFor={`${label}`}>{label}</Label>
       <Select defaultValue="" disabled={false} name={`${name}`} onValueChange={value => setUserInfo({...userInfo, [name]: value})}>
         <SelectTrigger className="w-full">

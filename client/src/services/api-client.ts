@@ -35,8 +35,17 @@ export async function deleteUser(id: number) {
 }
 
 export async function checkAdminInfo(adminInfo: AdminData) {
+  // const localAdminInfo = JSON.parse(localStorage.getItem("admin")!);
+// 
+  // if(localAdminInfo) {
+    // return true;
+  // }
+
   try {
     const result = await apiClient.post("/login", adminInfo);
+    if(result.data.isAdmin) {
+      localStorage.setItem("admin", JSON.stringify(result.data.isAdmin));
+    }
     return result.data.isAdmin;
     // returns true / false
   } catch(err) {

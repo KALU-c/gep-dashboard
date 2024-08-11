@@ -3,9 +3,15 @@ import { useContext } from "react";
 import { Outlet, Navigate } from "react-router-dom";
 
 const ProtectedRoutes = () => {
-  const { admin } = useContext(AuthContext)
+  const { admin, setAdmin } = useContext(AuthContext);
 
-  return admin ? <Outlet /> : <Navigate to="/login" />
-}
+  const localAdminInfo = JSON.parse(localStorage.getItem("admin")!);
+  console.log(localAdminInfo);
+  if (localAdminInfo) {
+    setAdmin(true);
+  }
 
-export default ProtectedRoutes
+  return admin ? <Outlet /> : <Navigate to="/register" />;
+};
+
+export default ProtectedRoutes;

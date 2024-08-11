@@ -42,6 +42,8 @@ const Navbar = ({ hideTabs = false }: Props) => {
             </Link>
           </>
         )}
+        
+        
       </nav>
       <Sheet>
         <SheetTrigger asChild>
@@ -72,6 +74,20 @@ const Navbar = ({ hideTabs = false }: Props) => {
                 </Link>
               </>
             )}
+            <>
+            <Link
+              to="/login"
+              className="text-muted-foreground rounded-sm transition-colors hover:text-foreground"
+            >
+              Login
+            </Link>
+            <Link
+              to="/register"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Register
+            </Link>
+          </>
           </nav>
         </SheetContent>
       </Sheet>
@@ -92,11 +108,11 @@ const Navbar = ({ hideTabs = false }: Props) => {
               <DropdownMenuSeparator />
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <Link to="/login"><DropdownMenuItem>Logout</DropdownMenuItem></Link>
+              <Link to="/login"><DropdownMenuItem onClick={() => localStorage.removeItem("admin")}>Logout</DropdownMenuItem></Link>
             </DropdownMenuContent>
           </DropdownMenu>
         ) : (
-          <div className="flex gap-4">
+          <div className="md:flex md:gap-4 hidden">
             <Link to="/login">
               <Button className="text-foreground w-full px-10 bg-transparent border-2 border-zinc-700">
                 Login
