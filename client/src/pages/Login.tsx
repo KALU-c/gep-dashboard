@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label";
 import Navbar from "@/components/Navbar";
 import { ChangeEvent, useContext, useState } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 
 export type AdminData = {
   email: string;
@@ -23,6 +24,7 @@ export default function Login() {
   const { setAdmin } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const [ status, setStatus ] = useState<string>("Login")
   const [adminInfo, setAdminInfo] = useState<AdminData>({
     email: "",
     password: "",
@@ -30,10 +32,17 @@ export default function Login() {
 
   async function handleSubmit() {
     try {
+      setStatus("Logging in...")
       const result = await checkAdminInfo(adminInfo);
       setAdmin(result);
       if (result) {
         navigate("/");
+      } else {
+        toast("Wrong email or password", {
+          description: "Please try again...",
+          className: "dark:text-red-400 dark:bg-black"
+        })
+        setStatus("Login")
       }
     } catch (err) {
       console.log(err);
@@ -84,7 +93,7 @@ export default function Login() {
                 />
               </div>
               <Button type="submit" className="w-full" onClick={handleSubmit}>
-                Login
+                {status}
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">

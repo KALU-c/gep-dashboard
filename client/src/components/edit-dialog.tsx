@@ -14,6 +14,7 @@ import { UserProps } from "./Edit";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateUser } from "@/services/api-client";
 import { DialogClose } from "@radix-ui/react-dialog";
+import { toast } from "sonner";
 
 const EditDialog = ({
   children,
@@ -24,7 +25,7 @@ const EditDialog = ({
 }) => {
   const queryClient = useQueryClient();
 
-  const [userInfo, setUserInfo] = useState({
+  const [userInfo, setUserInfo] = useState<UserProps>({
     id: user.id,
     firstName: user.firstName,
     middleName: user.middleName,
@@ -46,10 +47,18 @@ const EditDialog = ({
 
   async function handleUpdatedUser() {
     try {
+      toast("User Info Changed successfully!", {
+        description: `${user.firstName} ${user.middleName}'s info is updated`,
+        className:
+          "font-medium dark:bg-black bg-white text-emerald-700 dark:text-emerald-400 border-border border-2",
+      });
       const updatedUser = await updateUser(user.id, userInfo);
       setUserInfo(updatedUser);
     } catch (err) {
       console.log(err);
+      toast("Something went wrong", {
+        className: "dark:text-red-400 dark:bg-black text-red-500",
+      });
     }
   }
 
