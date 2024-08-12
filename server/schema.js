@@ -19,7 +19,7 @@ const UsersSchema = new Schema({
 const AdminSchema = new Schema({
   email: String,
   password: String,
-}, { collection: "GEPHMYC" })
+}, { collection: "GEPHMYCADMIN" })
 
 export const Users = model("User", UsersSchema);
 export const Admin = model("Admin", AdminSchema);
