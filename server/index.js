@@ -10,7 +10,7 @@ const app = express();
 const port = 3000;
 
 app.use(cors({
-  origin: ["https://gep-hmyc.vercel.app", "https://gep-hmyc.vercel.app/register", "https://gep-hmyc.vercel.app/login"],
+  origin: ["https://gep-hmyc.vercel.app"],
   methods: ["POST", "GET", "DELETE", "PUT"],
   credentials: true
 }));
