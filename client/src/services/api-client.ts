@@ -5,7 +5,7 @@ import { UserInfoType } from "@/pages/SignupForm";
 import axios from "axios";
 
 export const apiClient =  axios.create({
-  baseURL: "http://localhost:3000"
+  baseURL: "https://gep-registration-api.vercel.app"
 });
 
 export async function fetchUsers() {
