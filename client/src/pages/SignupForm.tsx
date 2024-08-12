@@ -156,7 +156,7 @@ export function SignupForm() {
                   />
                   <SelectableField
                     label="ህብረት"
-                    option={["ኳየር", "አምልኮ", "ስነ ጽሁፍ", "ግቢ ውበት", "ጸሎት", "ወንጌል ስርጭት", "ሌላ"]}
+                    option={["ኳየር", "አምልኮ", "ስነ ጽሁፍ", "ፋሬስ", "ጸሎት", "ወንጌል ስርጭት", "ሌላ"]}
                     name="fellowShip"
                     className="col-span-3 sm:col-span-1"
                     value={`${userInfo.fellowShip}`}
