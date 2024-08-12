@@ -9,13 +9,11 @@ dotenv.config();
 const app = express();
 const port = 3000;
 
-app.use(cors(
-//   {
-//   origin: [""],
-//   methods: ["POST", "GET"],
-//   credentials: true
-// }
-));
+app.use(cors({
+  origin: [""],
+  methods: ["POST", "GET", "DELETE", "PUT"],
+  credentials: true
+}));
 app.use(morgan("tiny"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
