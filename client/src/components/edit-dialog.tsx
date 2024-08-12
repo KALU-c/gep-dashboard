@@ -26,7 +26,7 @@ const EditDialog = ({
   const queryClient = useQueryClient();
 
   const [userInfo, setUserInfo] = useState<UserProps>({
-    id: user.id,
+    _id: user._id,
     firstName: user.firstName,
     middleName: user.middleName,
     lastName: user.lastName,
@@ -52,7 +52,7 @@ const EditDialog = ({
         className:
           "font-medium dark:bg-black bg-white text-emerald-700 dark:text-emerald-400 border-border border-2",
       });
-      const updatedUser = await updateUser(user.id, userInfo);
+      const updatedUser = await updateUser(user._id, userInfo);
       setUserInfo(updatedUser);
     } catch (err) {
       console.log(err);

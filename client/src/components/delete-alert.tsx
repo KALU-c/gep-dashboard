@@ -31,7 +31,7 @@ const DeleteAlert = ({
 
   async function handleDelete() {
     try {
-      await deleteUser(user.id);
+      await deleteUser(user._id);
     } catch (err) {
       console.log(err);
     }

@@ -17,7 +17,7 @@ export async function fetchUsers() {
   }
 }
 
-export async function updateUser(id: number, userData: Partial<UserProps>): Promise<UserProps | undefined> {
+export async function updateUser(id: string, userData: Partial<UserProps>): Promise<UserProps | undefined> {
   try {
     const result = await apiClient.put(`/edit/${id}`, userData);
     return result.data.updatedUser;
@@ -26,7 +26,7 @@ export async function updateUser(id: number, userData: Partial<UserProps>): Prom
   }
 }
 
-export async function deleteUser(id: number) {
+export async function deleteUser(id: string) {
   try {
     await apiClient.delete(`/delete/${id}`);
   } catch(err) {

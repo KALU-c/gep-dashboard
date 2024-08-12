@@ -16,7 +16,7 @@ import EditDialog from "./edit-dialog";
 import DeleteAlert from "./delete-alert";
 
 export type UserProps = {
-  id: number,
+  _id: string,
   firstName: string;
   middleName: string;
   lastName: string;

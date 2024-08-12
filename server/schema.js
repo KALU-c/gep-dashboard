@@ -21,6 +21,7 @@ import { Schema, model } from "mongoose";
 // });
 
 const UsersSchema = new Schema({
+  // id: Number,
   firstName: String,
   middleName: String,
   lastName: String,
@@ -30,7 +31,10 @@ const UsersSchema = new Schema({
   education: String,
   church: String,
   fellowShip: String,
-  date: String
+  date: {
+    type: Date,
+    default:
+  }
 })
 
 const AdminSchema = new Schema({

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import Edit from "@/components/Edit";
 export type User = {
-  id: number,
+  _id: string,
   firstName: string;
   middleName: string;
   lastName: string;
@@ -41,25 +41,25 @@ export const columns: ColumnDef<User>[] = [
     enableSorting: false,
     enableHiding: false,
   },
-  {
-    accessorKey: "id",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          ID
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => {
-      const id = parseFloat(row.getValue("id"));
+  // {
+  //   accessorKey: "id",
+  //   header: ({ column }) => {
+  //     return (
+  //       <Button
+  //         variant="ghost"
+  //         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+  //       >
+  //         ID
+  //         <ArrowUpDown className="ml-2 h-4 w-4" />
+  //       </Button>
+  //     );
+  //   },
+  //   cell: ({ row }) => {
+  //     const id = parseFloat(row.getValue("id"));
 
-      return <div className="lg:px-8 sm:px-3 md:px-4">{id}</div>;
-    },
-  },
+  //     return <div className="lg:px-8 sm:px-3 md:px-4">{id}</div>;
+  //   },
+  // },
   {
     accessorKey: "firstName",
     header: ({ column }) => {
