@@ -16,6 +16,19 @@ import { updateUser } from "@/services/api-client";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { toast } from "sonner";
 
+export type UserInfoType = {
+  _id: string;
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  age: number;
+  phone: string;
+  gender: string;
+  education: string;
+  church: string;
+  fellowShip: string;
+}
+
 const EditDialog = ({
   children,
   user,
@@ -25,7 +38,7 @@ const EditDialog = ({
 }) => {
   const queryClient = useQueryClient();
 
-  const [userInfo, setUserInfo] = useState({
+  const [userInfo, setUserInfo] = useState<UserInfoType>({
     _id: user._id,
     firstName: user.firstName,
     middleName: user.middleName,

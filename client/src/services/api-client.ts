@@ -1,11 +1,10 @@
 import { UserProps } from "@/components/Edit";
 import { AdminData } from "@/pages/Login";
 import { UserInfoType } from "@/pages/SignupForm";
-// import { AdminData } from "@/pages/Login";
 import axios from "axios";
 
 export const apiClient =  axios.create({
-  baseURL: "https://gep-registration-api.vercel.app"
+  baseURL: process.env.URL
 });
 
 export async function fetchUsers() {
@@ -17,7 +16,7 @@ export async function fetchUsers() {
   }
 }
 
-export async function updateUser(id: string, userData: Partial<UserProps>): Promise<UserProps | undefined> {
+export async function updateUser(id: string, userData: Partial<UserProps>) {
   try {
     const result = await apiClient.put(`/edit/${id}`, userData);
     return result.data.updatedUser;
@@ -36,11 +35,6 @@ export async function deleteUser(id: string) {
 }
 
 export async function checkAdminInfo(adminInfo: AdminData) {
-  // const localAdminInfo = JSON.parse(localStorage.getItem("admin")!);
-// 
-  // if(localAdminInfo) {
-    // return true;
-  // }
 
   try {
     const result = await apiClient.post("/login", adminInfo);
@@ -48,7 +42,6 @@ export async function checkAdminInfo(adminInfo: AdminData) {
       localStorage.setItem("admin", JSON.stringify(result.data.isAdmin));
     }
     return result.data.isAdmin;
-    // returns true / false
   } catch(err) {
     console.log(err);
     return false;
