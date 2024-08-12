@@ -53,7 +53,7 @@ const DeleteAlert = ({
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently delete
-            <span className="font-bold text-white"> {[user.firstName, user.middleName].join()}'s </span>
+            <span className="font-bold text-white"> {[user.firstName, user.middleName].join(" ")}'s </span>
             account and remove their data from our servers.
           </AlertDialogDescription>
         </AlertDialogHeader>

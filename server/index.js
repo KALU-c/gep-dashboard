@@ -9,7 +9,13 @@ dotenv.config();
 const app = express();
 const port = 3000;
 
-app.use(cors());
+app.use(cors(
+//   {
+//   origin: [""],
+//   methods: ["POST", "GET"],
+//   credentials: true
+// }
+));
 app.use(morgan("tiny"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,7 +26,7 @@ app.get("/users", async (req, res) => {
 });
 
 app.put("/edit/:id", async (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = req.params.id;
   const userData = req.body;
   userData.age = parseInt(userData.age);
 
@@ -33,7 +39,7 @@ app.put("/edit/:id", async (req, res) => {
 });
 
 app.delete("/delete/:id", async (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = req.params.id;
 
   try {
     const deletedUser = await deleteUser(id);

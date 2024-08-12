@@ -140,23 +140,23 @@ export function SignupForm() {
                       "1 - 8",
                       "8 - 10",
                       "11 - 12",
-                      "UnderGraduate",
-                      "PostGraduate",
+                      "ዩኒቨርሲቲ ተማሪ",
+                      "ዩኒቨርሲቲ ተመራቂ",
                     ]}
                     name="education"
                     className="col-span-3 sm:col-span-1"
                     value={`${userInfo.education}`}
                   />
                   <SelectableField
-                    label="ቤተ ክርይስታን"
-                    option={["U", "ለ", "ሐ", "መ", "ሠ"]}
+                    label="ቤተ ክርስቲያን"
+                    option={["መካነ ኢየሱስ", "ቃለ ህይወት", "ሙሉ ወንጌል", "መሰረተ ክርስቶስ", "ሌላ"]}
                     name="church"
                     className="col-span-3 sm:col-span-1"
                     value={`${userInfo.church}`}
                   />
                   <SelectableField
                     label="ህብረት"
-                    option={["ረ", "ሰ", "ሸ", "ቀ", "በ"]}
+                    option={["ኳየር", "አምልኮ", "ስነ ጽሁፍ", "ግቢ ውበት", "ጸሎት", "ወንጌል ስርጭት", "ሌላ"]}
                     name="fellowShip"
                     className="col-span-3 sm:col-span-1"
                     value={`${userInfo.fellowShip}`}

@@ -25,7 +25,7 @@ const EditDialog = ({
 }) => {
   const queryClient = useQueryClient();
 
-  const [userInfo, setUserInfo] = useState<UserProps>({
+  const [userInfo, setUserInfo] = useState({
     _id: user._id,
     firstName: user.firstName,
     middleName: user.middleName,

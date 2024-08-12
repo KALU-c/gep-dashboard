@@ -27,6 +27,7 @@ export async function updateUser(id: string, userData: Partial<UserProps>): Prom
 }
 
 export async function deleteUser(id: string) {
+  console.log(id);
   try {
     await apiClient.delete(`/delete/${id}`);
   } catch(err) {

@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import { Users, Admin } from "../schema.js";
 
 dotenv.config();
-const uri = process.env.MONGODB_LOCAL_URI;
+const uri = process.env.MONGODB_URI;
 
 await mongoose.connect(uri);
 
@@ -18,7 +18,7 @@ export async function fetchUserData() {
 
 export async function editUserData(id, userData) {
   try {
-    const updatedUser = await Users.findOneAndUpdate({id: id}, userData, { new: true });
+    const updatedUser = await Users.findOneAndUpdate({_id: id}, userData, { new: true });
 
     if(!updatedUser) {
       console.log("User not found");
@@ -32,7 +32,7 @@ export async function editUserData(id, userData) {
 
 export async function deleteUser(id) {
   try {
-    const deletedUser = await Users.findOneAndDelete({id: id});
+    const deletedUser = await Users.findByIdAndDelete(id);
     return deletedUser;
   } catch(err) {
     console.log(err);

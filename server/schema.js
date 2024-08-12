@@ -14,12 +14,12 @@ const UsersSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-})
+}, { collection: "GEPHMYC" })
 
 const AdminSchema = new Schema({
   email: String,
   password: String,
-})
+}, { collection: "GEPHMYC" })
 
 export const Users = model("User", UsersSchema);
 export const Admin = model("Admin", AdminSchema);
