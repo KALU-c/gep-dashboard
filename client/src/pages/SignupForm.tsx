@@ -188,6 +188,8 @@ export function SignupForm() {
                       "11 - 12",
                       "ዩኒቨርሲቲ ተማሪ",
                       "ዩኒቨርሲቲ ተመራቂ",
+                      "ሰራተኛ",
+                      "ሌላ",
                     ]}
                     name="education"
                     className="col-span-3 sm:col-span-1"
@@ -216,6 +218,13 @@ export function SignupForm() {
                       "ጸሎት",
                       "ወንጌል ስርጭት",
                       "ሌላ",
+                      "መጽሃፍ ቅዱስ ጥናት",
+                      "ፍቅር ማጋራት",
+                      "እሁድ ትምህርት ቤት",
+"መማክርት",
+"ግቢ ውበት",
+"እምነት ማጽኛ",
+"ዲጂታል ቲም",
                     ]}
                     name="fellowShip"
                     className="col-span-3 sm:col-span-1"
