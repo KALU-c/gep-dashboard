@@ -61,7 +61,6 @@ app.post("/login", async (req, res) => {
 
 app.post("/add", async(req, res) => {
   await addUser(req.body)
-  // console.log(req.body);
 })
 
 app.listen(port, () => console.log(`server running on port ${port}`));

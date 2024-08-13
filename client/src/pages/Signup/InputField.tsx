@@ -7,12 +7,13 @@ interface Props {
   text: string
   name: string
   className?: string
+  inputClassName?: string
   value: string
 }
 
 // add value attribute to the Input element
 
-const InputField = ({ text, name, className, value }: Props) => {
+const InputField = ({ text, name, className, value, inputClassName }: Props) => {
   const { userInfo, setUserInfo } = useContext(RegisterContext);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
@@ -25,7 +26,7 @@ const InputField = ({ text, name, className, value }: Props) => {
   return (
     <div className={`grid gap-2 ${className}`}>
       <Label htmlFor={`${name}`}>{text}</Label>
-      <Input name={`${name}`} required onChange={(event) => handleChange(event)} value={value}/>
+      <Input name={`${name}`} required onChange={(event) => handleChange(event)} value={value} className={inputClassName}/>
     </div>
   )
 }

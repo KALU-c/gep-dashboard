@@ -6,7 +6,6 @@ const ProtectedRoutes = () => {
   const { admin, setAdmin } = useContext(AuthContext);
 
   const localAdminInfo = JSON.parse(localStorage.getItem("admin")!);
-  console.log(localAdminInfo);
   if (localAdminInfo) {
     setAdmin(true);
   }

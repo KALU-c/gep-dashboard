@@ -8,12 +8,11 @@ import {
   CardTitle,
 } from "../components/ui/card";
 
-// import { DatePicker } from "./Signup/DatePicker"
 import InputField from "./Signup/InputField";
 import SelectableField from "./Signup/SelectableField";
 import Navbar from "@/components/Navbar";
 import { RegisterContext } from "@/contexts/RegisterContext";
-import { addUser } from "@/services/api-client";
+import { addUser, fetchUsers } from "@/services/api-client";
 import { toast } from "sonner";
 
 export type UserInfoType = {
@@ -29,6 +28,7 @@ export type UserInfoType = {
 };
 
 export function SignupForm() {
+  const [phoneClassName, setPhoneClassName] = useState<string>("");
   const [userInfo, setUserInfo] = useState<UserInfoType>({
     firstName: "",
     middleName: "",
@@ -42,38 +42,82 @@ export function SignupForm() {
   });
 
   async function handleSubmit() {
-    const originalUserInfo = userInfo;
-    if (
-      userInfo.firstName &&
-      userInfo.middleName &&
-      userInfo.lastName &&
-      userInfo.age &&
-      userInfo.phone &&
-      userInfo.church &&
-      userInfo.education &&
-      userInfo.fellowShip &&
-      userInfo.gender
-    ) {
-      toast("You registered successfully", {
-        description: `Thank you for registering, ${userInfo.firstName} ${userInfo.middleName}`,
-        className:
-          "dark:bg-black bg-white text-emerald-700 dark:text-emerald-400 border-border border-2",
-      });
-      setUserInfo({
-        firstName: "",
-        middleName: "",
-        lastName: "",
-        age: "",
-        phone: "",
-        gender: "",
-        education: "",
-        church: "",
-        fellowShip: "",
-      });
-      await addUser(userInfo);
-    } else {
-      setUserInfo(originalUserInfo);
-      toast("Input Field is Empty", {
+    // clean code? what is clean code? :)
+    // refactor this when you have time
+    try {
+      const originalUserInfo = userInfo;
+      if (
+        userInfo.firstName &&
+        userInfo.middleName &&
+        userInfo.lastName &&
+        userInfo.age &&
+        userInfo.phone &&
+        userInfo.church &&
+        userInfo.education &&
+        userInfo.fellowShip &&
+        userInfo.gender
+      ) {
+        if (parseInt(originalUserInfo.age) > 13) {
+          const result = await fetchUsers();
+          const duplicatedNumber = result.find(
+            (user: UserInfoType) => originalUserInfo.phone === user.phone
+          );
+          if (!duplicatedNumber) {
+            setUserInfo({
+              firstName: "",
+              middleName: "",
+              lastName: "",
+              age: "",
+              phone: "",
+              gender: "",
+              education: "",
+              church: "",
+              fellowShip: "",
+            });
+            toast("You registered successfully", {
+              description: `Thank you for registering, ${userInfo.firstName} ${userInfo.middleName}`,
+              className:
+                "dark:bg-black bg-white text-emerald-700 dark:text-emerald-400 border-border border-2",
+            });
+            setPhoneClassName("");
+            await addUser(originalUserInfo);
+          } else {
+            setUserInfo(originalUserInfo);
+            setPhoneClassName("border-4 border-red-500 bg-red-500");
+            toast("Phone number is already registered", {
+              description: "Please use other phone number!",
+              className: "dark:text-yellow-400 dark:bg-black text-red-500",
+            });
+          }
+        } else {
+          setUserInfo({
+            firstName: "",
+            middleName: "",
+            lastName: "",
+            age: "",
+            phone: "",
+            gender: "",
+            education: "",
+            church: "",
+            fellowShip: "",
+          });
+          toast("You registered successfully", {
+            description: `Thank you for registering, ${userInfo.firstName} ${userInfo.middleName}`,
+            className:
+              "dark:bg-black bg-white text-emerald-700 dark:text-emerald-400 border-border border-2",
+          });
+          setPhoneClassName("");
+          await addUser(originalUserInfo);
+        }
+      } else {
+        setUserInfo(originalUserInfo);
+        toast("Input Field is Empty", {
+          className: "dark:text-red-400 dark:bg-black text-red-500",
+        });
+      }
+    } catch (err) {
+      console.log(err);
+      toast("Something went wrong", {
         className: "dark:text-red-400 dark:bg-black text-red-500",
       });
     }
@@ -125,6 +169,7 @@ export function SignupForm() {
                     name="phone"
                     className="col-span-3 sm:col-span-1"
                     value={`${userInfo.phone}`}
+                    inputClassName={phoneClassName}
                   />
                   <SelectableField
                     label="ጾታ"
@@ -150,14 +195,28 @@ export function SignupForm() {
                   />
                   <SelectableField
                     label="ቤተ ክርስቲያን"
-                    option={["መካነ ኢየሱስ", "ቃለ ህይወት", "ሙሉ ወንጌል", "መሰረተ ክርስቶስ", "ሌላ"]}
+                    option={[
+                      "መካነ ኢየሱስ",
+                      "ቃለ ህይወት",
+                      "ሙሉ ወንጌል",
+                      "መሰረተ ክርስቶስ",
+                      "ሌላ",
+                    ]}
                     name="church"
                     className="col-span-3 sm:col-span-1"
                     value={`${userInfo.church}`}
                   />
                   <SelectableField
                     label="ህብረት"
-                    option={["ኳየር", "አምልኮ", "ስነ ጽሁፍ", "ፋሬስ", "ጸሎት", "ወንጌል ስርጭት", "ሌላ"]}
+                    option={[
+                      "ኳየር",
+                      "አምልኮ",
+                      "ስነ ጽሁፍ",
+                      "ፋሬስ",
+                      "ጸሎት",
+                      "ወንጌል ስርጭት",
+                      "ሌላ",
+                    ]}
                     name="fellowShip"
                     className="col-span-3 sm:col-span-1"
                     value={`${userInfo.fellowShip}`}
