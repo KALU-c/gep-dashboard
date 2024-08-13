@@ -71,7 +71,7 @@ export function DataTable<TData, TValue>({
         <div className="flex gap-6">
           <div className="flex items-center py-4">
             <Input
-              placeholder="Filter first name"
+              placeholder="Filter by first name"
               value={
                 (table.getColumn("firstName")?.getFilterValue() as string) ?? ""
               }
@@ -81,7 +81,7 @@ export function DataTable<TData, TValue>({
               className="max-w-sm"
             />
           </div>
-          <div className="flex items-center py-4">
+          <div className="hidden sm:flex items-center py-4">
             <Input
               placeholder="Filter fellow ship"
               value={
@@ -93,7 +93,7 @@ export function DataTable<TData, TValue>({
               className="max-w-sm"
             />
           </div>
-          <div className="flex items-center py-4">
+          <div className=" hidden sm:flex items-center py-4">
             <Input
               placeholder="Filter phone"
               value={
