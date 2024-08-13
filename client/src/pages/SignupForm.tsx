@@ -42,6 +42,7 @@ export function SignupForm() {
   });
 
   async function handleSubmit() {
+    const originalUserInfo = userInfo;
     if (
       userInfo.firstName &&
       userInfo.middleName &&
@@ -58,8 +59,6 @@ export function SignupForm() {
         className:
           "dark:bg-black bg-white text-emerald-700 dark:text-emerald-400 border-border border-2",
       });
-
-      await addUser(userInfo);
       setUserInfo({
         firstName: "",
         middleName: "",
@@ -71,7 +70,9 @@ export function SignupForm() {
         church: "",
         fellowShip: "",
       });
+      await addUser(userInfo);
     } else {
+      setUserInfo(originalUserInfo);
       toast("Input Field is Empty", {
         className: "dark:text-red-400 dark:bg-black text-red-500",
       });
