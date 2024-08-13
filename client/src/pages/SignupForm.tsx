@@ -128,7 +128,7 @@ export function SignupForm() {
       <Navbar hideTabs={true} />
       <RegisterContext.Provider value={{ userInfo, setUserInfo }}>
         <div className="mt-10 flex justify-center items-center mb-10">
-          <Card className="sm:mx-auto mx-0.5">
+          <Card className="sm:mx-auto mx-0">
             <CardHeader className="mb-5">
               <CardTitle className="text-6xl text-center">GEP</CardTitle>
               <CardDescription className="text-center">
