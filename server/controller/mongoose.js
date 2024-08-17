@@ -16,6 +16,15 @@ export async function fetchUserData() {
   }
 }
 
+export async function fetchAdminData() {
+  try {
+    const admins = await Admin.find({});
+    return admins;
+  } catch(err) {
+    console.log(err);
+  }
+}
+
 export async function editUserData(id, userData) {
   try {
     const updatedUser = await Users.findOneAndUpdate({_id: id}, userData, { new: true });
@@ -75,5 +84,18 @@ export async function addUser(userData) {
   } catch(err) {
     console.log(err);
     return false;
+  }
+}
+
+export async function addAdmin(adminData) {
+  try {
+    const response = await Admin.insertMany(adminData);
+    if(response.acknowledged) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch(err) {
+    console.log(err);
   }
 }

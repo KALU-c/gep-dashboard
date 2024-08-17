@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
 import bodyParser from "body-parser";
-import { addUser, checkAdmin, deleteUser, editUserData, fetchUserData } from "./controller/mongoose.js";
+import { addUser, checkAdmin, deleteUser, editUserData, fetchAdminData, fetchUserData, addAdmin } from "./controller/mongoose.js";
 
 dotenv.config();
 const app = express();
@@ -59,8 +59,17 @@ app.post("/login", async (req, res) => {
   }
 })
 
+app.get("/admins", async(req, res) => {
+  const adminList = await fetchAdminData();
+  res.json({ admins: adminList })
+})
+
+app.post("/add-admin", async(req, res) => {
+  await addAdmin(req.body);
+})
+
 app.post("/add", async(req, res) => {
   await addUser(req.body)
-})
+});
 
 app.listen(port, () => console.log(`server running on port ${port}`));

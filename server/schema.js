@@ -17,8 +17,13 @@ const UsersSchema = new Schema({
 }, { collection: "GEPHMYC" })
 
 const AdminSchema = new Schema({
+  name: String,
   email: String,
   password: String,
+  date: {
+    type: Date,
+    default: Date.now
+  }
 }, { collection: "GEPHMYCADMIN" })
 
 export const Users = model("User", UsersSchema);

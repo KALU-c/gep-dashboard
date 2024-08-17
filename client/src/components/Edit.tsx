@@ -14,9 +14,10 @@ import {
 import { AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import EditDialog from "./edit-dialog";
 import DeleteAlert from "./delete-alert";
+// import { DrawerUsersView } from "./drawer-users-view";
 
 export type UserProps = {
-  _id: string,
+  _id: string;
   firstName: string;
   middleName: string;
   lastName: string;
@@ -30,39 +31,39 @@ export type UserProps = {
 
 export default function Edit({ user }: { user: UserProps }) {
   return (
-    <EditDialog user={user}>
-      <DeleteAlert user={user}>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+    <DeleteAlert user={user}>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" className="h-8 w-8 p-0">
+            <span className="sr-only">Open menu</span>
+            <MoreHorizontal className="h-4 w-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <EditDialog user={user}>
+          {/* <DrawerUsersView users={user}> */}
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
-            {/* Edit Dialog Trigger */}
+              {/* Edit Dialog Trigger */}
 
-            <DialogTrigger asChild>
-              <DropdownMenuItem>Edit</DropdownMenuItem>
-            </DialogTrigger>
+              <DialogTrigger asChild>
+                <DropdownMenuItem>Edit</DropdownMenuItem>
+              </DialogTrigger>
 
-            {/* Edit Dialog Trigger */}
+              {/* Edit Dialog Trigger */}
 
-            <AlertDialogTrigger asChild>
-              <DropdownMenuItem>Delete</DropdownMenuItem>
-            </AlertDialogTrigger>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View detail</DropdownMenuItem>
-            {/* <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(user.name)}
-            >
-              Copy user's name
-            </DropdownMenuItem> */}
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </DeleteAlert>
-    </EditDialog>
+              <AlertDialogTrigger asChild>
+                <DropdownMenuItem>Delete</DropdownMenuItem>
+              </AlertDialogTrigger>
+
+              <DropdownMenuSeparator />
+              {/* <DrawerTrigger asChild> */}
+                <DropdownMenuItem>View detail</DropdownMenuItem>
+              {/* </DrawerTrigger> */}
+            </DropdownMenuContent>
+          {/* </DrawerUsersView> */}
+        </EditDialog>
+      </DropdownMenu>
+    </DeleteAlert>
   );
 }
