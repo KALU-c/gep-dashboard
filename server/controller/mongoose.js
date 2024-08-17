@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { Users, Admin } from "../schema.js";
+import bcrypt from "bcrypt";
 
 dotenv.config();
 const uri = process.env.MONGODB_URI;
+const saltRounds = 5;
 
 await mongoose.connect(uri);
 
@@ -57,13 +59,9 @@ export async function checkAdmin(email, password) {
     if(admin.length === 0) {
       return false
     } else {
-      if(admin) {
-        if(admin[0].password === password) {
-          return true
-        } else {
-          return false
-        }
-      }
+      const storedHashedPassword = admin[0].password;
+      const result = await bcrypt.compare(password, storedHashedPassword)
+      return result;
     }
   } catch(err) {
     console.log(err);
@@ -88,14 +86,23 @@ export async function addUser(userData) {
 }
 
 export async function addAdmin(adminData) {
-  try {
-    const response = await Admin.insertMany(adminData);
-    if(response.acknowledged) {
-      return true;
+  // This will hash the password
+  bcrypt.hash(adminData.password, saltRounds, async(err, hash) => {
+    if(err) {
+      console.log("Error while hashing password: ", err)
     } else {
-      return false;
+      adminData.password = hash;
+      try {
+        const response = await Admin.insertMany(adminData);
+        if(response.acknowledged) {
+          return true;
+        } else {
+          return false;
+        }
+      } catch(err) {
+        console.log(err);
+      }
     }
-  } catch(err) {
-    console.log(err);
-  }
+  })
+  
 }
