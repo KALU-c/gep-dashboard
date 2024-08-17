@@ -127,12 +127,12 @@ export function SignupForm() {
     <>
       <Navbar hideTabs={true} />
       <RegisterContext.Provider value={{ userInfo, setUserInfo }}>
-        <div className="mt-10 flex justify-center items-center mb-10">
+        <div className="mt-10 sm:flex justify-center items-center mb-10">
           <Card className="sm:mx-auto mx-0.5">
             <CardHeader className="mb-5">
               <CardTitle className="text-6xl text-center">GEP</CardTitle>
               <CardDescription className="text-center">
-                Enter your information to create an account
+                Enter your information to register
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -221,10 +221,10 @@ export function SignupForm() {
                       "መጽሃፍ ቅዱስ ጥናት",
                       "ፍቅር ማጋራት",
                       "እሁድ ትምህርት ቤት",
-"መማክርት",
-"ግቢ ውበት",
-"እምነት ማጽኛ",
-"ዲጂታል ቲም",
+                      "መማክርት",
+                      "ግቢ ውበት",
+                      "እምነት ማጽኛ",
+                      "ዲጂታል ቲም",
                     ]}
                     name="fellowShip"
                     className="col-span-3 sm:col-span-1"
