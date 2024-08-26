@@ -60,7 +60,7 @@ export async function checkAdminInfo(adminInfo: AdminData) {
 export async function addUser(userInfo: UserInfoType) {
   try {
     const result = await apiClient.post("/add", userInfo);
-    return result;
+    return result.data.registered;
   } catch (err) {
     console.log(err);
   }

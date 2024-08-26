@@ -28,6 +28,7 @@ export type UserInfoType = {
 };
 
 export function SignupForm() {
+  const [registerButton, setRegisterButton] = useState<string>("Register");
   const [phoneClassName, setPhoneClassName] = useState<string>("");
   const [userInfo, setUserInfo] = useState<UserInfoType>({
     firstName: "",
@@ -42,6 +43,7 @@ export function SignupForm() {
   });
 
   async function handleSubmit() {
+    setRegisterButton("Registering...");
     // clean code? what is clean code? :)
     // refactor this when you have time
     try {
@@ -80,10 +82,17 @@ export function SignupForm() {
                 "dark:bg-black bg-white text-emerald-700 dark:text-emerald-400 border-border border-2",
             });
             setPhoneClassName("");
-            await addUser(originalUserInfo);
+            setRegisterButton("Registering...");
+            const response = await addUser(originalUserInfo);
+            if(response) {
+              setRegisterButton("Register")
+            } else {
+              setRegisterButton("Register")
+            }
           } else {
             setUserInfo(originalUserInfo);
             setPhoneClassName("border-4 border-red-500 bg-red-500");
+            setRegisterButton("Register")
             toast("Phone number is already registered", {
               description: "Please use other phone number!",
               className: "dark:text-yellow-400 dark:bg-black text-red-500",
@@ -101,6 +110,7 @@ export function SignupForm() {
             church: "",
             fellowShip: "",
           });
+          setRegisterButton("Register")
           toast("You registered successfully", {
             description: `Thank you for registering, ${userInfo.firstName} ${userInfo.middleName}`,
             className:
@@ -111,12 +121,14 @@ export function SignupForm() {
         }
       } else {
         setUserInfo(originalUserInfo);
+        setRegisterButton("Register")
         toast("Input Field is Empty", {
           className: "dark:text-red-400 dark:bg-black text-red-500",
         });
       }
     } catch (err) {
       console.log(err);
+      setRegisterButton("Register");
       toast("Something went wrong", {
         className: "dark:text-red-400 dark:bg-black text-red-500",
       });
@@ -239,7 +251,7 @@ export function SignupForm() {
                     handleSubmit();
                   }}
                 >
-                  Create an account
+                  {registerButton}
                 </Button>
               </div>
             </CardContent>
